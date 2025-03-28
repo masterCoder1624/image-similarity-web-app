@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Similarity Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1, h2 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        .image-box {
+            width: 48%;
+            text-align: center;
+        }
+        .image-box img {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            background-color: #fff;
+        }
+        .results {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .similarity-metric {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .similarity-metric:last-child {
+            border-bottom: none;
+        }
+        .metric-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .metric-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #3498db;
+        }
+        .average {
+            background-color: #eaf7ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .average-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2980b9;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .back-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .explanation {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+        .explanation h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Similarity Results</h1>
+        
+        <div class="image-container">
+            <div class="image-box">
+                <h3>Image 1</h3>
+                <img src="/{{ image1 }}" alt="First image">
+            </div>
+            <div class="image-box">
+                <h3>Image 2</h3>
+                <img src="/{{ image2 }}" alt="Second image">
+            </div>
+        </div>
+        
+        <div class="results">
+            <h2>Similarity Metrics</h2>
+            
+            <div class="similarity-metric">
+                <div class="metric-name">Histogram Similarity (Color Distribution):</div>
+                <div class="metric-value">{{ histogram_similarity }}</div>
+            </div>
+            
+            <div class="similarity-metric">
+                <div class="metric-name">Structural Similarity (SSIM):</div>
+                <div class="metric-value">{{ ssim_similarity }}</div>
+            </div>
+            
+            <div class="similarity-metric">
+                <div class="metric-name">Feature Matching Similarity (SIFT):</div>
+                <div class="metric-value">{{ feature_similarity }}</div>
+            </div>
+            
+            <div class="average">
+                <div class="metric-name">Average Similarity Score:</div>
+                <div class="average-value">{{ average_similarity }}</div>
+            </div>
+        </div>
+        
+        <div class="explanation">
+            <h3>About the Similarity Metrics</h3>
+            <p><strong>Histogram Similarity:</strong> Compares the color distribution between images. Higher scores indicate similar color profiles.</p>
+            <p><strong>Structural Similarity (SSIM):</strong> Measures the perceived similarity in structure, luminance, and contrast. A score of 100% means identical images.</p>
+            <p><strong>Feature Matching:</strong> Uses SIFT algorithm to detect and match distinctive features between images. Higher scores indicate more matching features.</p>
+        </div>
+        
+        <div class="back-container">
+            <a href="/" class="btn">Compare New Images</a>
+        </div>
+    </div>
+</body>
+</html> 
